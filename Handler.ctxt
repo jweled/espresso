@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Handler
+comment1.params=p
+comment1.target=java.lang.String\ getExt(java.lang.String)
+comment2.params=he
+comment2.target=void\ handle(com.sun.net.httpserver.HttpExchange)
+numComments=3
