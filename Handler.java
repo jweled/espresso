@@ -1,9 +1,9 @@
 
 /**
- * Write a description of Handler here.
+ * Server request handler
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jweled
+ * @version 1.0.0
  */
 import com.sun.net.httpserver.*;
 import java.io.*;
@@ -43,9 +43,15 @@ public class Handler implements HttpHandler {
                 outb.write(i);
             }
             reader.close();
+            if (gext.equals("esp")) {
+                main.print("Parsing ESP");
+                String parsed = ESP.parse(outb.toString(), true);
+                outb.reset();
+                outb.write(parsed.getBytes());
+            }
             res = outb.toByteArray();
             he.getResponseHeaders().set("Content-Type", enc);
-            he.sendResponseHeaders(200, file.length());
+            he.sendResponseHeaders(200, outb.size());
         } else {
             he.sendResponseHeaders(404, 0);
         }

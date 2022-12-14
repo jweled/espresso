@@ -1,16 +1,16 @@
 
 /**
- * Write a description of main here.
+ * Main class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jweled
+ * @version 1.0.0
  */
 import java.net.*;
 import com.sun.net.httpserver.*;
 import java.util.Scanner;
 public class main {
-    public static int port = 8000;
-    public static void print(String msg) {
+    public static int port = 6969;
+    public static void print(Object msg) {
         System.out.println(msg);
     }
     public static void main(String[] args) throws Exception {

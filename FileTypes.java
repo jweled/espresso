@@ -1,15 +1,16 @@
 
 /**
- * Write a description of filetypes here.
+ * Mass file type archive
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jweled
+ * @version 1.0.0
  */
 import java.util.*;
 public class FileTypes {
-    //formats specified by https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-    //exceptions are noted on lines where they're present.
+    //Formats specified by https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+    //Exceptions to this are noted.
     public static Map<String, String> fileMap = new HashMap<String, String>() {{
+        put("esp", "text/html"); //Custom Espresso Server Page format
         put("aac", "audio/aac");
         put("abw", "audio/x-abiword");
         put("arc", "audio/x-freearc");
@@ -32,7 +33,7 @@ public class FileTypes {
         put("gif", "image/gif");
         put("htm", "text/html");
         put("html", "text/html");
-        put("ico", "image/x-icon"); //exception
+        put("ico", "image/x-icon"); //Changed to more standard image/x-icon
         put("ics", "text/calender");
         put("jar", "application/java-archive");
         put("jpeg", "image/jpeg");

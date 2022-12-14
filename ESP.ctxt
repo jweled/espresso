@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ESP
+comment1.params=str\ match\ offset
+comment1.target=java.util.List\ recIndex(java.lang.String,\ java.lang.String,\ int)
+comment2.params=file\ verbose
+comment2.target=java.lang.String\ parse(java.lang.String,\ boolean)
+numComments=3
