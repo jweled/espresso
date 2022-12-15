@@ -1,1 +1,0 @@
-A simple "Hello World" type example, that tells you how much time it is until 4:20PM.
