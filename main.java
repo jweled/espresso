@@ -8,13 +8,15 @@
 import java.net.*;
 import com.sun.net.httpserver.*;
 import java.util.Scanner;
+import java.util.Properties;
 public class main {
-    public static int port = 6969;
+    public static Properties config = ConfigLoader.load("app.config");
+    public static String port = ConfigLoader.get(config, "port");
     public static void print(Object msg) {
         System.out.println(msg);
     }
     public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(port)), 0);
         System.out.println("Started on port " + port);
         server.createContext("/", new Handler());
         server.setExecutor(null);

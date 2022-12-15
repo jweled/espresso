@@ -9,7 +9,7 @@ import com.sun.net.httpserver.*;
 import java.io.*;
 import java.net.*;
 public class Handler implements HttpHandler {
-    private String dir = "public";
+    private String dir = ConfigLoader.get(main.config, "dir");
     private String getExt(String p) {
         int i = p.lastIndexOf('.');
         if (i > 0) {
@@ -38,9 +38,14 @@ public class Handler implements HttpHandler {
             }
             main.print(enc + " MIME type selected");
             //read
-            if (gext.equals("esp")) {
+            if (gext.equals("esp") && !ConfigLoader.get(main.config, "esp_enabled").equals("false")) {
                 main.print("Parsing ESP");
-                String parsed = ESP.parse(new String(reader.readAllBytes()), true);
+                String toParse = new String();
+                int i = 0;
+                while ((i = reader.read()) != -1) {
+                    toParse += (char)(i);
+                }
+                String parsed = ESP.parse(toParse, Boolean.parseBoolean(ConfigLoader.get(main.config, "verbose")));
                 outb.write(parsed.getBytes());
             } else {
                 int i = 0;
