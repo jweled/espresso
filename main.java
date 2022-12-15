@@ -9,15 +9,22 @@ import java.net.*;
 import com.sun.net.httpserver.*;
 import java.util.Scanner;
 import java.util.Properties;
+import java.util.Date;
 public class main {
     public static Properties config = ConfigLoader.load("app.config");
     public static String port = ConfigLoader.get(config, "port");
+    //If you're building a custom version, consider changing these. They show up on /espresso-version.
+    public static String VER = "1.0.0";
+    public static String BUILDSTR = "Standard build";
+    //
+    public static long UPTIME;
     public static void print(Object msg) {
         System.out.println(msg);
     }
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(port)), 0);
-        System.out.println("Started on port " + port);
+        UPTIME = System.currentTimeMillis();
+        System.out.println("Started on port " + port + " at " + new Date(UPTIME));
         server.createContext("/", new Handler());
         server.setExecutor(null);
         server.start();

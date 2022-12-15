@@ -8,6 +8,9 @@
 import com.sun.net.httpserver.*;
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
 public class Handler implements HttpHandler {
     private String dir = ConfigLoader.get(main.config, "dir");
     private String getExt(String p) {
@@ -31,8 +34,8 @@ public class Handler implements HttpHandler {
             //get mime type
             String gext = getExt(realpath);
             String enc = "";
-            if (FileTypes.fileMap.containsKey(gext)) {
-                enc = FileTypes.fileMap.get(gext);
+            if (FileFormats.fileMap.containsKey(gext)) {
+                enc = FileFormats.fileMap.get(gext);
             } else {
                 enc = "application/octet-stream";
             }
@@ -57,6 +60,24 @@ public class Handler implements HttpHandler {
             res = outb.toByteArray();
             he.getResponseHeaders().set("Content-Type", enc);
             he.sendResponseHeaders(200, outb.size());
+        } else if (realpath.equals("public\\espresso-info") && ConfigLoader.get(main.config, "info_page").equals("true")) {
+            File im = new File("espresso.png");
+            byte[] img = new byte[0];
+            if (im.exists()) {
+                img = Base64.getEncoder().encode(Files.readAllBytes(im.toPath()));
+            }
+            String msg = "<head><title>Espresso Info</title></head><body><img src='data:image/png;base64," + 
+                new String(img) + 
+                "' style='float:left;'>Espresso v" + 
+                main.VER + 
+                "<br>" + 
+                main.BUILDSTR + 
+                "<br>Uptime: " + 
+                new java.util.Date(main.UPTIME) + 
+                "</body>";
+                
+            res = msg.getBytes();
+            he.sendResponseHeaders(200, msg.length());
         } else {
             String msg = "404 Not Found";
             res = msg.getBytes();

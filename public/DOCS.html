@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Documentation</title>
+</head>
+<body>
+	<h1>Commands</h1>
+	<hr>
+	<p>This is a full list of commands that can be used in the command line while your server is running.</p>
+	<ul>
+		<li>exit
+			<ul><li>An important command that stops both the command listening loop and the request handler.</li></ul>
+		</li>
+	</ul>
+	<h1>Config</h1>
+	<hr>
+	<p>This list describes the values that can be changed in the app.config file.</p>
+	<ul>
+		<li>esp_enabled
+			<ul><li>[true/false] Determines if .esp (Espresso Server Page) files are parsed. If false, they're just interpreted as <code>text/html</code>.</li></ul>
+		</li>
+		<li>info_page
+			<ul><li>[true/false] Determines if the path <code>/espresso_info</code> returns info about the server, such as uptime and version.</li></ul>
+		</li>
+		<li>engine
+			<ul><li>[engine name] Determines the scripting engine used to interpret server code in ESPs.</li></ul>
+		</li>
+		<li>verbose
+			<ul><li>[true/false] Determines if ESP parsing is verbosely recorded in the console. Useful for internal debugging.</li></ul>
+		</li>
+		<li>dir
+			<ul><li>[directory path] Determines the root directory for the server. Supports paths relative to the executable's directory.</li></ul>
+		</li>
+		<li>port
+			<ul><li>[port number] Determines the port that the server runs on.</li></ul>
+		</li>
+	</ul>
+	<hr>
+	<p><i>Found a bug? Want to make a contribution? Stop by our <a href="https://github.com/jweled/espresso">GitHub</a>!</i></p>
+</body>
