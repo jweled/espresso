@@ -1,9 +1,0 @@
-[[ESP
-function readFile(path) {
-	var path = java.nio.file.Paths.get(path);
-	var bytes = java.nio.file.Files.readAllBytes(path);
-	return String.fromCharCode.apply(null, Java.from(bytes));
-}
-print(readFile("private/users.txt"));
-print(readFile("private/messages.txt"));
-END]]

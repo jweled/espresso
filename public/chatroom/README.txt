@@ -1,1 +1,0 @@
-An example of a simple chatroom made using an Espresso Server Page acting as an endpoint to retrieve the storage files (located in private/chatroom).
