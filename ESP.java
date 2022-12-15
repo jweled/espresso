@@ -20,7 +20,7 @@ public class ESP {
     }
     public static String parse(String file, boolean verbose) {
         ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+        ScriptEngine engine = mgr.getEngineByName("javascript");
         ScriptContext ctx = new SimpleScriptContext();
         Bindings gb = engine.createBindings();
         file = file.replace(System.lineSeparator(), "");

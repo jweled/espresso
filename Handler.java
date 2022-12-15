@@ -38,22 +38,24 @@ public class Handler implements HttpHandler {
             }
             main.print(enc + " MIME type selected");
             //read
-            int i = 0;
-            while ((i = reader.read()) != -1) {
-                outb.write(i);
-            }
-            reader.close();
             if (gext.equals("esp")) {
                 main.print("Parsing ESP");
-                String parsed = ESP.parse(outb.toString(), true);
-                outb.reset();
+                String parsed = ESP.parse(new String(reader.readAllBytes()), true);
                 outb.write(parsed.getBytes());
+            } else {
+                int i = 0;
+                while ((i = reader.read()) != -1) {
+                    outb.write(i);
+                }
             }
+            reader.close();
             res = outb.toByteArray();
             he.getResponseHeaders().set("Content-Type", enc);
             he.sendResponseHeaders(200, outb.size());
         } else {
-            he.sendResponseHeaders(404, 0);
+            String msg = "404 Not Found";
+            res = msg.getBytes();
+            he.sendResponseHeaders(404, msg.length());
         }
         OutputStream out = he.getResponseBody();
         out.write(res);
